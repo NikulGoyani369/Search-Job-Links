@@ -6,6 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Job Portal Links in Germany</title>
         <link rel="stylesheet" href="style.css" />
+
+        <style>
+            footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #333;
+                color: white;
+                text-align: center;
+                padding: 10px;
+            }
+        </style>
+
     </head>
 
     <body>
@@ -69,6 +83,36 @@
                 <li><a href="https://www.xing.de" target="_blank">XING.de</a></li>
                 <li><a href="https://www.yourfirm.de" target="_blank">Yourfirm.de</a></li>
         </div>
+
+         <!-- Main content of the page -->
+    
+    <footer>
+        &copy; <span id="currentYear"></span> ❤️ <span id="name">Your Name</span>
+        <br>
+        <span id="currentDateTime"></span>
+    </footer>
+
+    <script>
+        // Set the current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Set the name
+        document.getElementById('name').textContent = 'Nikulkumar Goyani';
+
+        // Set the current date and time
+        function updateDateTime() {
+            var now = new Date();
+            var dateTimeString = now.toLocaleString(); // Format date and time as string
+            document.getElementById('currentDateTime').textContent = dateTimeString;
+        }
+        
+        // Update date and time on page load
+        updateDateTime();
+
+        // Optionally update date and time every second
+        setInterval(updateDateTime, 1000);
+    </script>
+
     </body>
 
     </html>
