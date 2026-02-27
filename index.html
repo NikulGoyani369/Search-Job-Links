@@ -7,7 +7,7 @@
     <title>Germany Job Portals | Premium Collection</title>
     <!-- Google Fonts for Modern Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3.1" />
+    <link rel="stylesheet" href="style.css?v=3.2" />
 </head>
 
 <body>
@@ -292,6 +292,8 @@
         }
         // Load custom links from LocalStorage
         function loadCustomLinks() {
+            if (!localStorage.getItem('jobUsername')) return;
+
             const links = JSON.parse(localStorage.getItem('customJobLinks') || '[]');
             const grid = document.getElementById('linksList');
 
@@ -339,10 +341,37 @@
 
         // Update auth button based on login state
         const authBtn = document.getElementById('authBtn');
-        if (localStorage.getItem('jobUsername')) {
+        const isLogged = localStorage.getItem('jobUsername');
+
+        if (isLogged) {
             authBtn.href = "dashboard.html";
             authBtn.innerText = "My Dashboard";
             authBtn.classList.add("btn-primary");
+        } else {
+            // Un-logged user restrictions
+            const searchInput = document.getElementById('searchInput');
+            searchInput.disabled = true;
+            searchInput.placeholder = "Login to unlock search...";
+            searchInput.style.opacity = "0.5";
+            searchInput.style.cursor = "not-allowed";
+
+            const linksList = document.getElementById('linksList');
+            const linkNodes = linksList.getElementsByClassName('job-link');
+
+            // Hide everything after the 6th item
+            for (let i = 6; i < linkNodes.length; i++) {
+                linkNodes[i].classList.add('hidden-link');
+            }
+
+            // Append the login wall banner
+            const wall = document.createElement('div');
+            wall.className = 'login-wall';
+            wall.innerHTML = `
+                <h2>Unlock Full Access</h2>
+                <p>Login to view 50+ curated job portals, add your own custom links, and unlock full search capabilities.</p>
+                <a href="login.html" class="btn btn-primary" style="margin-top: 1.5rem;">Create Free Account</a>
+            `;
+            linksList.appendChild(wall);
         }
     </script>
 </body>

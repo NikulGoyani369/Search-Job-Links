@@ -532,3 +532,56 @@ body {
   color: #fca5a5;
   box-shadow: 0 5px 15px rgba(239, 68, 68, 0.2);
 }
+
+/* Login Wall */
+.hidden-link {
+  display: none !important;
+}
+
+.login-wall {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--bento-radius);
+  box-shadow: var(--glass-shadow);
+  margin-top: 1rem;
+  animation: revealUp 1s ease both;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-wall::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(165, 180, 252, 0.15) 0%, transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.login-wall h2,
+.login-wall p,
+.login-wall a {
+  position: relative;
+  z-index: 1;
+}
+
+.login-wall h2 {
+  font-size: 2.5rem;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.login-wall p {
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
