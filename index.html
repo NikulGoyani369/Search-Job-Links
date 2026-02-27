@@ -1,164 +1,292 @@
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Job Portal Links in Germany</title>
-        <link rel="stylesheet" href="style.css" />
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Germany Job Portals | Premium Collection</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
 
-        <style>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
-              /* Style for the container */
-        .container {
-            background-color: #f0f4f8; /* Light blue/grey background */
-            padding: 20px;
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-            max-width: 600px;
-            margin: 0 auto; /* Center the container */
-        }
+    <div class="app-container">
+        <header class="header">
+            <h1>Job Portals <span>Germany</span></h1>
+            <p>Your curated gateway to career opportunities</p>
 
-        /* Style for the header */
-        .container h1 {
-            font-family: 'Arial', sans-serif;
-            color: #333; /* Dark text color */
-            text-align: center; /* Center the heading */
-        }
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for job portals..." onkeyup="filterLinks()">
+                <div class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+            </div>
+        </header>
 
-        /* Style for the list */
-        .container ul {
-            list-style-type: none; /* Remove default bullet points */
-            padding: 0;
-        }
+        <main class="links-grid" id="linksList">
+            <a href="https://www.aerztestellen.de" target="_blank" class="job-link"
+                data-tags="medicus klinik mta aerzte medizin pflege doctors health">
+                <div class="link-icon">⚕️</div><span>Aerztestellen.de</span>
+            </a>
+            <a href="https://www.absolventa.de" target="_blank" class="job-link"
+                data-tags="general students absolventa graduates">
+                <div class="link-icon">🎓</div><span>absolventa.de</span>
+            </a>
+            <a href="https://www.arbeitsagentur.de" target="_blank" class="job-link"
+                data-tags="agentur arbeit general government amt">
+                <div class="link-icon">🏛️</div><span>Agentur für Arbeit</span>
+            </a>
+            <a href="https://www.angularjs.de" target="_blank" class="job-link"
+                data-tags="it tech angularjs development programming javascript web">
+                <div class="link-icon">💻</div><span>angularjs.de</span>
+            </a>
+            <a href="https://www.badische-zeitung.de" target="_blank" class="job-link"
+                data-tags="news zeitung regional general paper baden">
+                <div class="link-icon">📰</div><span>badische-zeitung.de</span>
+            </a>
+            <a href="https://www.morgenpost.de" target="_blank" class="job-link"
+                data-tags="berlin morgenpost news regional general paper">
+                <div class="link-icon">📰</div><span>Berliner Morgenpost</span>
+            </a>
+            <a href="https://www.bvbc.de" target="_blank" class="job-link" data-tags="bvbc finance accounting business">
+                <div class="link-icon">📊</div><span>Bvbc.de</span>
+            </a>
+            <a href="https://www.careerbuilder.de" target="_blank" class="job-link"
+                data-tags="career builder general jobs">
+                <div class="link-icon">💼</div><span>careerbuilder.de</span>
+            </a>
+            <a href="https://www.careerjobs.de" target="_blank" class="job-link"
+                data-tags="career jobs general employment">
+                <div class="link-icon">💼</div><span>careerjobs.de</span>
+            </a>
+            <a href="https://www.chemie.de" target="_blank" class="job-link"
+                data-tags="chemie chemistry science lab laboratory">
+                <div class="link-icon">🧪</div><span>chemie.de / Karriere</span>
+            </a>
+            <a href="https://www.aerzteblatt.de" target="_blank" class="job-link"
+                data-tags="aerzteblatt medical health doctors news">
+                <div class="link-icon">⚕️</div><span>Deutsches Ärzteblatt</span>
+            </a>
+            <a href="https://www.dv-treff.de" target="_blank" class="job-link"
+                data-tags="dv-treff it tech forum software">
+                <div class="link-icon">💻</div><span>dv-treff.de</span>
+            </a>
+            <a href="https://www.fachaerztejobs.de" target="_blank" class="job-link"
+                data-tags="fachaerzte jobs medical health specialist doctors">
+                <div class="link-icon">⚕️</div><span>fachaerztejobs.de</span>
+            </a>
+            <a href="https://www.gottinger-tageblatt.de" target="_blank" class="job-link"
+                data-tags="gottinger tageblatt news regional paper goettingen">
+                <div class="link-icon">📰</div><span>Göttinger Tageblatt</span>
+            </a>
+            <a href="https://www.heisejobs.de" target="_blank" class="job-link"
+                data-tags="heise it tech magazine development programming">
+                <div class="link-icon">💻</div><span>heisejobs.de</span>
+            </a>
+            <a href="https://www.homepage.de" target="_blank" class="job-link" data-tags="homepage general websites">
+                <div class="link-icon">🏠</div><span>Homepage</span>
+            </a>
+            <a href="https://www.ictjob.de" target="_blank" class="job-link"
+                data-tags="ict it tech jobs information communication">
+                <div class="link-icon">💻</div><span>ICTJob.de</span>
+            </a>
+            <a href="https://www.indeed.de" target="_blank" class="job-link"
+                data-tags="indeed general massive search global">
+                <div class="link-icon">🔍</div><span>Indeed.de</span>
+            </a>
+            <a href="https://www.itjobboard.de" target="_blank" class="job-link"
+                data-tags="it job board tech programming developer">
+                <div class="link-icon">💻</div><span>itjobboard.de</span>
+            </a>
+            <a href="https://www.itsteps.de" target="_blank" class="job-link"
+                data-tags="it steps tech careers programming software">
+                <div class="link-icon">💻</div><span>itsteps.de</span>
+            </a>
+            <a href="https://www.it-treff.de" target="_blank" class="job-link"
+                data-tags="it treff tech meetup community developers">
+                <div class="link-icon">💻</div><span>it-treff.de</span>
+            </a>
+            <a href="https://www.jobcenter-medizin.de" target="_blank" class="job-link"
+                data-tags="jobcenter medizin medical health clinic hospitals">
+                <div class="link-icon">⚕️</div><span>jobcenter-medizin.de</span>
+            </a>
+            <a href="https://www.jobmedicus.de" target="_blank" class="job-link"
+                data-tags="jobmedicus medical health nursing care">
+                <div class="link-icon">⚕️</div><span>jobmedicus.de</span>
+            </a>
+            <a href="https://www.jobs.de" target="_blank" class="job-link" data-tags="jobs general generic work">
+                <div class="link-icon">💼</div><span>jobs.de</span>
+            </a>
+            <a href="https://www.jobscout24.de" target="_blank" class="job-link"
+                data-tags="jobscout24 general career portal search">
+                <div class="link-icon">💼</div><span>Jobscout24.de</span>
+            </a>
+            <a href="https://jobs.heise.de/" target="_blank" class="job-link"
+                data-tags="heise it tech developers software engineering">
+                <div class="link-icon">💻</div><span>jobs.heise.de</span>
+            </a>
+            <a href="https://www.jobs.nordbayern.de" target="_blank" class="job-link"
+                data-tags="nordbayern regional general bavaria nurnberg">
+                <div class="link-icon">📰</div><span>jobs.nordbayern.de</span>
+            </a>
+            <a href="https://www.jobvector.de" target="_blank" class="job-link"
+                data-tags="jobvector science tech biology pharma physics STEM">
+                <div class="link-icon">🔬</div><span>jobvector</span>
+            </a>
+            <a href="https://www.jobware.de" target="_blank" class="job-link"
+                data-tags="jobware general premium jobs application">
+                <div class="link-icon">💼</div><span>jobware.de</span>
+            </a>
+            <a href="https://www.kalaydo.de" target="_blank" class="job-link"
+                data-tags="kalaydo general classifieds marketplace regional">
+                <div class="link-icon">💼</div><span>Kalaydo.de</span>
+            </a>
+            <a href="https://www.kn-jobs.de" target="_blank" class="job-link"
+                data-tags="kieler nachrichten regional news kiel baltic">
+                <div class="link-icon">📰</div><span>Kieler Nachrichten</span>
+            </a>
+            <a href="https://www.kimeta.de" target="_blank" class="job-link"
+                data-tags="kimeta general search aggregator engine">
+                <div class="link-icon">🔍</div><span>Kimeta.de</span>
+            </a>
+            <a href="https://www.kliniken.de" target="_blank" class="job-link"
+                data-tags="kliniken medical health clinic hospital care doctors">
+                <div class="link-icon">🏥</div><span>kliniken.de</span>
+            </a>
+            <a href="https://www.medi-jobs.de" target="_blank" class="job-link"
+                data-tags="medi jobs medical health healthcare nurses">
+                <div class="link-icon">⚕️</div><span>medi-jobs.de</span>
+            </a>
+            <a href="https://www.meinestadt.de" target="_blank" class="job-link"
+                data-tags="meinestadt regional general city local">
+                <div class="link-icon">🏙️</div><span>meinestadt.de</span>
+            </a>
+            <a href="https://www.monster.de" target="_blank" class="job-link"
+                data-tags="monster general global CV resume boards">
+                <div class="link-icon">👾</div><span>Monster</span>
+            </a>
+            <a href="https://www.mta-portal.de" target="_blank" class="job-link"
+                data-tags="mta portal medical health technicians science lab assistant">
+                <div class="link-icon">🔬</div><span>MTA Portal</span>
+            </a>
+            <a href="https://www.newjob.de" target="_blank" class="job-link"
+                data-tags="newjob general career work find">
+                <div class="link-icon">💼</div><span>newjob.de</span>
+            </a>
+            <a href="https://stellen.personalwirtschaft.de/" target="_blank" class="job-link"
+                data-tags="personalwirtschaft hr management human resources personnel recruiters">
+                <div class="link-icon">👥</div><span>personalwirtschaft.de</span>
+            </a>
+            <a href="https://www.piening-personal.de/de/jobboerse/" target="_blank" class="job-link"
+                data-tags="piening hr personal recruitment zeitarbeit temp agency">
+                <div class="link-icon">🤝</div><span>Piening Personal</span>
+            </a>
+            <a href="https://www.regio-jobanzeiger.de" target="_blank" class="job-link"
+                data-tags="regio regional general local jobs">
+                <div class="link-icon">📍</div><span>Regio-Jobanzeiger.de</span>
+            </a>
+            <a href="https://www.rnz.de" target="_blank" class="job-link"
+                data-tags="rhein neckar zeitung news regional heidelberg">
+                <div class="link-icon">📰</div><span>Rhein-Neckar-Zeitung</span>
+            </a>
+            <a href="https://www.rosenheimjobs.de" target="_blank" class="job-link"
+                data-tags="rosenheim regional general bavaria alpes local">
+                <div class="link-icon">📍</div><span>Rosenheimjobs.de</span>
+            </a>
+            <a href="https://www.ruhr24jobs.de/" target="_blank" class="job-link"
+                data-tags="ruhr regional general dortmund west germany ruhrgebiet">
+                <div class="link-icon">📍</div><span>Ruhr24Jobs</span>
+            </a>
+            <a href="https://www.stellenanzeigen.de" target="_blank" class="job-link"
+                data-tags="stellenanzeigen general adverts career listings">
+                <div class="link-icon">📄</div><span>Stellenanzeigen.de</span>
+            </a>
+            <a href="https://www.stepstone.de" target="_blank" class="job-link"
+                data-tags="stepstone general huge platform leading premium">
+                <div class="link-icon">💼</div><span>Stepstone</span>
+            </a>
+            <a href="https://www.sueddeutsche.de" target="_blank" class="job-link"
+                data-tags="sueddeutsche news regional munich quality press">
+                <div class="link-icon">📰</div><span>Süddeutsche.de</span>
+            </a>
+            <a href="https://www.t3n.de" target="_blank" class="job-link"
+                data-tags="t3n it tech digital pioneers startups web">
+                <div class="link-icon">💻</div><span>t3n.de</span>
+            </a>
+            <a href="https://de.talent.com/de/" target="_blank" class="job-link"
+                data-tags="talent general aggregator global international">
+                <div class="link-icon">⭐</div><span>Talent.com</span>
+            </a>
+            <a href="https://www.t5-karriereportal.de" target="_blank" class="job-link"
+                data-tags="t5 karriereportal science tech pharma health engineering">
+                <div class="link-icon">🩺</div><span>T5-Karriereportal.de</span>
+            </a>
+            <a href="https://vistex.talentify.io/" target="_blank" class="job-link"
+                data-tags="vistex talentify general recruitment software platform">
+                <div class="link-icon">⭐</div><span>Vistex Talentify</span>
+            </a>
+            <a href="https://www.wuv.de" target="_blank" class="job-link"
+                data-tags="wuv marketing media advertising pr pr agencies">
+                <div class="link-icon">📣</div><span>wuv.de</span>
+            </a>
+            <a href="https://www.xing.de" target="_blank" class="job-link"
+                data-tags="xing network social business connections recruiters">
+                <div class="link-icon">🤝</div><span>XING.de</span>
+            </a>
+            <a href="https://www.yourfirm.de" target="_blank" class="job-link"
+                data-tags="yourfirm mittelstand general hidden champions sme mid sized">
+                <div class="link-icon">🏢</div><span>Yourfirm.de</span>
+            </a>
+        </main>
+    </div>
 
-        /* Style for list items and links */
-        .container li {
-            margin-bottom: 10px; /* Spacing between list items */
-        }
-
-        .container li a {
-            text-decoration: none; /* Remove underline */
-            color: #007bff; /* Link color */
-            font-weight: bold; /* Make the link bold */
-            padding: 10px;
-            display: block;
-            border-radius: 5px;
-            background-color: #e9f7fe; /* Light blue background for links */
-        }
-
-        /* Hover effect for links */
-        .container li a:hover {
-            background-color: #007bff; /* Darker blue on hover */
-            color: white; /* White text on hover */
-            transition: background-color 0.3s ease; /* Smooth transition */
-        }
-
-            footer {
-                position: fixed;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                background-color: #6cc6e9;
-                color: white;
-                text-align: center;
-                padding: 5px;
-            }
-        </style>
-
-    </head>
-
-    <body>
-        <div class="container">
-            <h1>Useful Links</h1>
-            <ul>
-                
-
-                <li><a href="https://www.aerztestellen.de" target="_blank">Aerztestellen.de</a></li>
-                <li><a href="https://www.absolventa.de" target="_blank">absolventa.de</a></li>
-                <li><a href="https://www.arbeitsagentur.de" target="_blank">Agentur für Arbeit</a></li>
-                <li><a href="https://www.angularjs.de" target="_blank">angularjs.de</a></li>
-                <li><a href="https://www.badische-zeitung.de" target="_blank">badische-zeitung.de</a></li>
-                <li><a href="https://www.morgenpost.de" target="_blank">Berliner Morgenpost / morgenpost.de</a></li>
-                <li><a href="https://www.bvbc.de" target="_blank">Bvbc.de</a></li>
-                <li><a href="https://www.careerbuilder.de" target="_blank">careerbuilder.de/jobscout24.de</a></li>
-                <li><a href="https://www.careerjobs.de" target="_blank">careerjobs.de</a></li>
-                <li><a href="https://www.chemie.de" target="_blank">chemie.de / Karriere</a></li>
-                <li><a href="https://www.aerzteblatt.de" target="_blank">Deutsches Ärzteblatt</a></li>
-                <li><a href="https://www.dv-treff.de" target="_blank">dv-treff.de</a></li>
-                <li><a href="https://www.fachaerztejobs.de" target="_blank">fachaerztejobs.de</a></li>
-                <li><a href="https://www.gottinger-tageblatt.de" target="_blank">Göttinger Tageblatt</a></li>
-                <li><a href="https://www.heisejobs.de" target="_blank">heisejobs.de</a></li>
-                <li><a href="https://www.homepage.de" target="_blank">Homepage</a></li>
-                <li><a href="https://www.ictjob.de" target="_blank">ICTJob.de</a></li>
-                <li><a href="https://www.indeed.de" target="_blank">Indeed.de</a></li>
-                <li><a href="https://www.itjobboard.de" target="_blank">itjobboard.de</a></li>
-                <li><a href="https://www.itsteps.de" target="_blank">itsteps.de</a></li>
-                <li><a href="https://www.it-treff.de" target="_blank">it-treff.de</a></li>
-                <li><a href="https://www.jobcenter-medizin.de" target="_blank">jobcenter-medizin.de</a></li>
-                <li><a href="https://www.jobmedicus.de" target="_blank">jobmedicus.de</a></li>
-                <li><a href="https://www.jobs.de" target="_blank">jobs.de</a></li>
-                <li><a href="https://www.jobscout24.de" target="_blank">Jobscout24.de</a></li>
-                <li><a href="https://jobs.heise.de/" target="_blank">jobs.heise.de</a></li>
-                <li><a href="https://www.jobs.nordbayern.de" target="_blank">jobs.nordbayern.de</a></li>
-                <li><a href="https://www.jobvector.de" target="_blank">jobvector</a></li>
-                <li><a href="https://www.jobware.de" target="_blank">jobware.de</a></li>
-                <li><a href="https://www.kalaydo.de" target="_blank">Kalaydo.de</a></li>
-                <li><a href="https://www.kn-jobs.de" target="_blank">Kieler Nachrichten / kn-jobs.de</a></li>
-                <li><a href="https://www.kimeta.de" target="_blank">Kimeta.de</a></li>
-                <li><a href="https://www.kliniken.de" target="_blank">kliniken.de</a></li>
-                <li><a href="https://www.medi-jobs.de" target="_blank">medi-jobs.de</a></li>
-                <li><a href="https://www.meinestadt.de" target="_blank">meinestadt.de</a></li>
-                <li><a href="https://www.monster.de" target="_blank">Monster</a></li>
-                <li><a href="https://www.mta-portal.de" target="_blank">MTA Portal</a></li>
-                <li><a href="https://www.newjob.de" target="_blank">newjob.de</a></li>
-                <li><a href="https://stellen.personalwirtschaft.de/" target="_blank">personalwirtschaft.de</a></li>
-                <li><a href="https://www.piening-personal.de/de/jobboerse/" target="_blank">Piening Personal Jobbörse</a></li>
-                <li><a href="https://www.regio-jobanzeiger.de" target="_blank">Regio-Jobanzeiger.de</a></li>
-                <li><a href="https://www.rnz.de" target="_blank">Rhein-Neckar-Zeitung</a></li>
-                <li><a href="https://www.rosenheimjobs.de" target="_blank">Rosenheimjobs.de</a></li>
-                <li><a href="https://www.ruhr24jobs.de/" target="_blank">Ruhr24Jobs</a></li>
-                <li><a href="https://www.stellenanzeigen.de" target="_blank">Stellenanzeigen.de</a></li>
-                <li><a href="https://www.stepstone.de" target="_blank">Stepstone</a></li>
-                <li><a href="https://www.sueddeutsche.de" target="_blank">Süddeutsche.de</a></li>
-                <li><a href="https://www.t3n.de" target="_blank">t3n.de</a></li>
-                <li><a href="https://de.talent.com/de/" target="_blank">Talent.com</a></li>
-                <li><a href="https://www.t5-karriereportal.de" target="_blank">T5-Karriereportal.de</a></li>
-                <li><a href="https://vistex.talentify.io/" target="_blank">Vistex Talentify</a></li>
-                <li><a href="https://www.wuv.de" target="_blank">wuv.de</a></li>
-                <li><a href="https://www.xing.de" target="_blank">XING.de</a></li>
-                <li><a href="https://www.yourfirm.de" target="_blank">Yourfirm.de</a></li>
-        </div>
-
-         <!-- Main content of the page -->
-    
-    <footer>
-        &copy; <span id="currentYear"></span> ❤️ <span id="name">Nikulkumar Goyani</span>
-        <br>
-        <span id="currentDateTime"></span>
+    <footer class="footer">
+        <p>&copy; <span id="currentYear"></span> ❤️ <span id="name">Nikulkumar Goyani</span> | <span
+                id="currentDateTime"></span></p>
     </footer>
 
     <script>
         // Set the current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Set the name
-        document.getElementById('name').textContent = 'Nikulkumar Goyani';
-
-        // Set the current date and time
+        // Update date and time dynamically
         function updateDateTime() {
             var now = new Date();
-            var dateTimeString = now.toLocaleString(); // Format date and time as string
-            document.getElementById('currentDateTime').textContent = dateTimeString;
+            var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            document.getElementById('currentDateTime').textContent = now.toLocaleDateString('en-US', options);
         }
-        
-        // Update date and time on page load
         updateDateTime();
-
-        // Optionally update date and time every second
         setInterval(updateDateTime, 1000);
+
+        // Search filter functionality
+        function filterLinks() {
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toLowerCase();
+            let nodes = document.getElementsByClassName('job-link');
+
+            for (let i = 0; i < nodes.length; i++) {
+                let linkName = nodes[i].querySelector('span').innerText.toLowerCase();
+                let dataTags = nodes[i].getAttribute('data-tags') || "";
+
+                if (linkName.includes(filter) || dataTags.includes(filter)) {
+                    nodes[i].style.display = "flex";
+                } else {
+                    nodes[i].style.display = "none";
+                }
+            }
+        }
     </script>
+</body>
 
-    </body>
-
-    </html>
+</html>
