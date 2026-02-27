@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Germany Job Portals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3.1">
+</head>
+
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        <nav class="nav-bar">
+            <a href="index.html" class="btn" style="margin-right: 1rem;">View All Links</a>
+            <button id="logoutBtn" class="btn btn-danger">Logout</button>
+        </nav>
+
+        <header class="header">
+            <h1 style="font-size: 3rem;">Welcome, <span id="userGreeting">User</span>!</h1>
+            <p>Add and manage your personal job search links</p>
+        </header>
+
+        <div class="form-container" style="margin-bottom: 2rem;">
+            <form id="addLinkForm">
+                <div class="form-group">
+                    <label for="linkName">Portal Name</label>
+                    <input type="text" id="linkName" placeholder="e.g. My Favorite Startup Jobs" required
+                        autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="linkUrl">URL</label>
+                    <input type="url" id="linkUrl" placeholder="https://..." required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="linkTags">Search Tags (space separated)</label>
+                    <input type="text" id="linkTags" placeholder="e.g. tech startup remote" autocomplete="off">
+                </div>
+                <div class="form-group" style="margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">+ Add Custom Link</button>
+                </div>
+            </form>
+        </div>
+
+        <div style="max-width: 500px; margin: 0 auto; padding-bottom: 2rem;">
+            <h2
+                style="color: var(--text-main); font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">
+                Your Custom Links</h2>
+            <div id="customLinksList" class="dashboard-list">
+                <!-- Links will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check login
+        const username = localStorage.getItem('jobUsername');
+        if (!username) {
+            window.location.href = 'login.html';
+        } else {
+            document.getElementById('userGreeting').textContent = username;
+        }
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('jobUsername');
+            window.location.href = 'index.html';
+        });
+
+        // Load Links
+        function getCustomLinks() {
+            return JSON.parse(localStorage.getItem('customJobLinks') || '[]');
+        }
+
+        function saveCustomLinks(links) {
+            localStorage.setItem('customJobLinks', JSON.stringify(links));
+            renderLinks();
+        }
+
+        function renderLinks() {
+            const links = getCustomLinks();
+            const container = document.getElementById('customLinksList');
+            container.innerHTML = '';
+
+            if (links.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 2rem 0;">No custom links added yet. Add some above!</p>';
+                return;
+            }
+
+            links.forEach((link, index) => {
+                const div = document.createElement('div');
+                div.className = 'dash-item';
+                div.innerHTML = `
+                    <div class="dash-item-info">
+                        <strong>${link.name}</strong>
+                        <span>${link.url}</span>
+                    </div>
+                    <button class="btn btn-danger" onclick="deleteLink(${index})" style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Delete</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Delete link
+        window.deleteLink = function (index) {
+            const links = getCustomLinks();
+            links.splice(index, 1);
+            saveCustomLinks(links);
+        }
+
+        // Add link
+        document.getElementById('addLinkForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('linkName').value;
+            const url = document.getElementById('linkUrl').value;
+            const tags = document.getElementById('linkTags').value;
+
+            const links = getCustomLinks();
+            links.push({ name, url, tags, icon: '🌟' });
+            saveCustomLinks(links);
+
+            this.reset();
+        });
+
+        // Initial render
+        renderLinks();
+    </script>
+</body>
+
+</html>

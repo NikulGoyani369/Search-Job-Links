@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Germany Job Portals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3.1">
+</head>
+
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        <nav class="nav-bar">
+            <a href="index.html" class="btn">← Back to Home</a>
+        </nav>
+
+        <header class="header">
+            <h1>Access <span>Dashboard</span></h1>
+            <p>Login to manage your custom job portals</p>
+        </header>
+
+        <div class="form-container">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter any name to login..." required
+                        autocomplete="off">
+                </div>
+                <div class="form-group" style="margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Enter Dashboard</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            if (username.trim() !== '') {
+                localStorage.setItem('jobUsername', username);
+                window.location.href = 'dashboard.html';
+            }
+        });
+
+        // Redirect if already logged in
+        if (localStorage.getItem('jobUsername')) {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+
+</html>

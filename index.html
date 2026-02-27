@@ -7,7 +7,7 @@
     <title>Germany Job Portals | Premium Collection</title>
     <!-- Google Fonts for Modern Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3.0" />
+    <link rel="stylesheet" href="style.css?v=3.1" />
 </head>
 
 <body>
@@ -18,6 +18,10 @@
     </div>
 
     <div class="app-container">
+        <nav class="nav-bar">
+            <a href="login.html" id="authBtn" class="btn">Login</a>
+        </nav>
+
         <header class="header">
             <h1>Job Portals <span>Germany</span></h1>
             <p>Your curated gateway to career opportunities</p>
@@ -286,8 +290,28 @@
                 }
             }
         }
+        // Load custom links from LocalStorage
+        function loadCustomLinks() {
+            const links = JSON.parse(localStorage.getItem('customJobLinks') || '[]');
+            const grid = document.getElementById('linksList');
+
+            links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = "_blank";
+                a.className = "job-link";
+                a.setAttribute("data-tags", (link.tags || "").toLowerCase() + " custom");
+
+                a.innerHTML = `<div class="link-icon">${link.icon || '⭐'}</div><span>${link.name}</span>`;
+                // Prepend so they show up first
+                grid.insertBefore(a, grid.firstChild);
+            });
+        }
+
+        loadCustomLinks();
 
         // 2026 UX: 3D Tilt Effect for Job Cards
+        // We run this after loading custom links so they get the event listeners too
         const cards = document.querySelectorAll('.job-link');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -312,6 +336,14 @@
                 card.style.zIndex = '';
             });
         });
+
+        // Update auth button based on login state
+        const authBtn = document.getElementById('authBtn');
+        if (localStorage.getItem('jobUsername')) {
+            authBtn.href = "dashboard.html";
+            authBtn.innerText = "My Dashboard";
+            authBtn.classList.add("btn-primary");
+        }
     </script>
 </body>
 
