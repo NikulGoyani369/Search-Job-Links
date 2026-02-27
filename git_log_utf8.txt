@@ -1,0 +1,29 @@
+﻿commit 4a70d2cfa517cf3cfea5e09ab31d24b944d9495e
+Author: Nikul Goyani <goyaniniks@gmail.com>
+Date:   Fri Feb 27 16:49:02 2026 +0100
+
+    feat: redesign UI to resemble LinkedIn professional job search dashboard
+
+commit 72c9ca55dad08b69a2ddfc12d2cf53cbbcb30429
+Author: Nikul Goyani <goyaniniks@gmail.com>
+Date:   Fri Feb 27 16:35:38 2026 +0100
+
+    fix: added browser cache buster for CSS
+
+commit 14a22cb7d4735deeeb33d765ce1ee256860aeebe
+Author: Nikul Goyani <goyaniniks@gmail.com>
+Date:   Fri Feb 27 16:26:14 2026 +0100
+
+    feat: redesign UI with premium glassmorphism, search & categorical filtering
+
+commit d10aa54e5ab1730f159a93df5f55817654a12a5b
+Author: Nikul Goyani <goyaniniks@gmail.com>
+Date:   Thu Oct 10 18:38:20 2024 +0200
+
+    Changed footer CSS
+
+commit b0226e65e6f7ba12aed604ed07c9747afbc877a7
+Author: Nikul Goyani <goyaniniks@gmail.com>
+Date:   Thu Oct 10 18:35:55 2024 +0200
+
+    CSS added in container and all links
