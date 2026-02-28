@@ -7,7 +7,7 @@ import TopOpportunities from '../components/dashboard/TopOpportunities';
 import MyApplications from '../components/dashboard/MyApplications';
 import NetworkingTools from '../components/dashboard/NetworkingTools';
 import MiniCards from '../components/dashboard/MiniCards';
-import type { TrackedJob } from '../types';
+import type { TrackedJob, Opportunity } from '../types';
 import { OPPORTUNITIES, LINKEDIN_CONNECTIONS } from '../data/mockData';
 
 const Dashboard: React.FC<{ setIsAuthenticated: (val: boolean) => void }> = ({ setIsAuthenticated }) => {
@@ -15,6 +15,8 @@ const Dashboard: React.FC<{ setIsAuthenticated: (val: boolean) => void }> = ({ s
     const [username, setUsername] = useState('User');
     const [trackedJobs, setTrackedJobs] = useState<TrackedJob[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [externalJobs, setExternalJobs] = useState<Opportunity[]>([]);
+    const [isScraping, setIsScraping] = useState(false);
 
     useEffect(() => {
         const user = localStorage.getItem('jobUsername');
@@ -98,9 +100,42 @@ const Dashboard: React.FC<{ setIsAuthenticated: (val: boolean) => void }> = ({ s
         }, 3000);
     };
 
+    const handleScrape = async () => {
+        if (externalJobs.length > 0) {
+            showToast("Already scraped recent opportunities!");
+            return;
+        }
+        setIsScraping(true);
+        showToast("Initializing AI Web Scraper...");
+        try {
+            const res = await fetch('https://remotive.com/api/remote-jobs?category=software-dev&limit=10');
+            const data = await res.json();
+
+            const scraped: Opportunity[] = data.jobs.slice(0, 10).map((job: any, index: number) => ({
+                id: `scraped-${job.id}-${index}`,
+                title: job.title,
+                company: job.company_name,
+                location: job.candidate_required_location || 'Remote',
+                salary: job.salary || 'Market Rate',
+                icon: '🌍',
+                color: '#4ade80',
+                bg: 'rgba(74,222,128,0.1)',
+                url: job.url
+            }));
+
+            setExternalJobs(scraped);
+            showToast(`Successfully scraped ${scraped.length} live jobs!`);
+        } catch (err) {
+            showToast("Failed to scrape opportunities.");
+        } finally {
+            setIsScraping(false);
+        }
+    };
+
     const formattedName = username.split(' ')[0] + " R.";
 
-    const filteredOpportunities = OPPORTUNITIES.filter(opp =>
+    const allOpportunities = [...OPPORTUNITIES, ...externalJobs];
+    const filteredOpportunities = allOpportunities.filter(opp =>
         opp.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         opp.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
         opp.location.toLowerCase().includes(searchTerm.toLowerCase())
@@ -120,7 +155,7 @@ const Dashboard: React.FC<{ setIsAuthenticated: (val: boolean) => void }> = ({ s
                     <DashboardHeader username={username} formattedName={formattedName} />
 
                     <div className="bento-dashboard">
-                        <ExploreCareers searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                        <ExploreCareers searchTerm={searchTerm} setSearchTerm={setSearchTerm} isScraping={isScraping} handleScrape={handleScrape} />
                         <TopOpportunities opportunities={filteredOpportunities} trackedJobs={trackedJobs} handleApply={handleApply} />
                         <MyApplications trackedJobs={trackedJobs} updateJobStatus={updateJobStatus} />
                         <NetworkingTools connections={LINKEDIN_CONNECTIONS} />
