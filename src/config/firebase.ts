@@ -3,13 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyByED4Wof_iZcbwyAcG2a8VRQFBOAkMG_U",
-    authDomain: "search-job-links-saas.firebaseapp.com",
-    projectId: "search-job-links-saas",
-    storageBucket: "search-job-links-saas.firebasestorage.app",
-    messagingSenderId: "73419991503",
-    appId: "1:73419991503:web:a1aef0b242979918f5caba",
-    measurementId: "G-52PL948102"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
