@@ -6,6 +6,8 @@ import Dashboard from './pages/Dashboard';
 import Messages from './pages/Messages';
 import Settings from './pages/Settings';
 import Networking from './pages/Networking';
+import Footer from './components/Footer';
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -47,6 +49,7 @@ function App() {
             element={isAuthenticated ? <Networking setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />}
           />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
