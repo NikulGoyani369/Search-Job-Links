@@ -3,6 +3,9 @@ import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Messages from './pages/Messages';
+import Settings from './pages/Settings';
+import Networking from './pages/Networking';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -30,6 +33,18 @@ function App() {
           <Route
             path="/dashboard"
             element={isAuthenticated ? <Dashboard setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/messages"
+            element={isAuthenticated ? <Messages setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/settings"
+            element={isAuthenticated ? <Settings setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/networking"
+            element={isAuthenticated ? <Networking setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/login" />}
           />
         </Routes>
       </div>

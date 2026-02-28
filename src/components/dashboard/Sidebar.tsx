@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const Sidebar: React.FC<{ handleLogout: () => void }> = ({ handleLogout }) => {
     return (
@@ -8,21 +8,21 @@ const Sidebar: React.FC<{ handleLogout: () => void }> = ({ handleLogout }) => {
                 <span className="logo-icon">💠</span> JobLink
             </div>
             <nav className="side-nav">
-                <a href="#" className="nav-item active">
+                <NavLink to="/dashboard" end className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <i>⊞</i> Dashboard
-                </a>
+                </NavLink>
                 <Link to="/" className="nav-item">
                     <i>🔍</i> Search
                 </Link>
-                <a href="#" className="nav-item">
+                <NavLink to="/networking" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <i>🔗</i> Networking
-                </a>
-                <a href="#" className="nav-item">
+                </NavLink>
+                <NavLink to="/messages" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <i>✉️</i> Messages
-                </a>
-                <a href="#" className="nav-item">
+                </NavLink>
+                <NavLink to="/settings" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <i>⚙️</i> Settings
-                </a>
+                </NavLink>
             </nav>
             <div className="sidebar-bottom">
                 <button onClick={handleLogout} className="nav-item text-danger" style={{ background: 'transparent', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}>
