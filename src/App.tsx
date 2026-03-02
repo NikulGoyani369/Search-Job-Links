@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Messages from './pages/Messages';
 import Settings from './pages/Settings';
 import Networking from './pages/Networking';
+import DataProtection from './pages/DataProtection';
 import Footer from './components/Footer';
 
 const AppContent = ({ isAuthenticated, setIsAuthenticated }: { isAuthenticated: boolean, setIsAuthenticated: (val: boolean) => void }) => {
@@ -18,6 +19,7 @@ const AppContent = ({ isAuthenticated, setIsAuthenticated }: { isAuthenticated: 
     <div>
       <Routes>
         <Route path="/" element={<Home isAuthenticated={isAuthenticated} />} />
+        <Route path="/data-protection" element={<DataProtection />} />
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         <Route
           path="/dashboard"
