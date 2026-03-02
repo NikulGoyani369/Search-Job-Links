@@ -35,7 +35,7 @@ const ExploreCareers: React.FC<Props> = ({ searchTerm, setSearchTerm, isScraping
                     onClick={handleScrape}
                     disabled={isScraping}
                     className="btn-mini cyan"
-                    style={{ background: 'rgba(6, 182, 212, 0.2)', border: '1px solid #06b6d4', color: '#06b6d4', padding: '0.4rem 0.8rem', borderRadius: '8px', cursor: isScraping ? 'not-allowed' : 'pointer' }}
+                    style={{ background: 'rgba(6, 182, 212, 0.2)', border: '1px solid #06b6d4', color: '#06b6d4', padding: '0.4rem 0.8rem', borderRadius: '8px', cursor: isScraping ? 'not-allowed' : 'pointer', flexGrow: 0 }}
                 >
                     {isScraping ? '🤖 Scraping jobs...' : '🕷️ Run Web Scraper'}
                 </button>
