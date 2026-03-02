@@ -3,16 +3,19 @@ import type { TrackedJob } from '../../types';
 import { PIPELINE_STEPS } from '../../data/mockData';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import type { DropResult } from '@hello-pangea/dnd';
+import AddJobModal from './AddJobModal';
 
 type Props = {
     trackedJobs: TrackedJob[];
     updateJobStatus: (id: string, newStatus: TrackedJob['status']) => void;
+    addManualJob: (title: string, company: string, status: TrackedJob['status'], url?: string) => void;
 };
 
-const MyApplications: React.FC<Props> = ({ trackedJobs, updateJobStatus }) => {
+const MyApplications: React.FC<Props> = ({ trackedJobs, updateJobStatus, addManualJob }) => {
     // We need to disable StrictMode warning for react-beautiful-dnd, or just use it.
     // @hello-pangea/dnd works fine in React 18 strict mode.
     const [isBrowser, setIsBrowser] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         setIsBrowser(true);
@@ -34,13 +37,20 @@ const MyApplications: React.FC<Props> = ({ trackedJobs, updateJobStatus }) => {
 
     return (
         <div className="dash-card applications-card" style={{ gridColumn: '1 / -1' }}>
-            <div className="card-title">My Applications - Kanban Board
-                <div style={{ display: 'flex', gap: '0.5rem', color: 'var(--text-main)' }}>
-                    <span style={{ background: 'rgba(255,255,255,0.1)', padding: '0.2rem 0.5rem', borderRadius: '5px', fontSize: '0.8rem', cursor: 'pointer' }}>⊞</span>
-                    <span id="appCounter" style={{ background: 'rgba(255,255,255,0.05)', padding: '0.2rem 0.5rem', borderRadius: '5px', fontSize: '0.8rem', cursor: 'pointer' }}>{trackedJobs.length} ▼</span>
+            <div className="card-title" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                    My Applications
+                    <div style={{ display: 'flex', gap: '0.5rem', color: 'var(--text-main)' }}>
+                        <span style={{ background: 'rgba(255,255,255,0.1)', padding: '0.2rem 0.5rem', borderRadius: '5px', fontSize: '0.8rem', cursor: 'pointer' }}>⊞</span>
+                        <span id="appCounter" style={{ background: 'rgba(255,255,255,0.05)', padding: '0.2rem 0.5rem', borderRadius: '5px', fontSize: '0.8rem', cursor: 'pointer' }}>{trackedJobs.length} ▼</span>
+                    </div>
                 </div>
+                <button onClick={() => setIsModalOpen(true)} className="btn btn-primary" style={{ fontSize: '0.8rem', padding: '0.4rem 0.8rem' }}>+ Add Job</button>
             </div>
+
             <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500, display: 'block', marginBottom: '1.5rem' }}>Drag and Drop to update pipeline stage</span>
+
+            <AddJobModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onAddJob={addManualJob} />
 
             <DragDropContext onDragEnd={onDragEnd}>
                 <div style={{ display: 'grid', gridTemplateColumns: `repeat(${PIPELINE_STEPS.length}, 1fr)`, gap: '1rem', minHeight: '400px' }}>

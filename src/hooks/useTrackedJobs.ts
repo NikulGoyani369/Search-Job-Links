@@ -107,5 +107,35 @@ export const useTrackedJobs = () => {
         }
     };
 
-    return { trackedJobs, handleApply, updateJobStatus };
+    const addManualJob = async (title: string, company: string, status: TrackedJob['status'], url?: string) => {
+        if (!userId) {
+            showToast("Please log in to track jobs.");
+            return;
+        }
+
+        const jobId = `manual_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+
+        const newJob = {
+            id: jobId,
+            title,
+            company,
+            status,
+            dateStr: new Date().toLocaleDateString(),
+            createdAt: new Date().toISOString(),
+            url: url || ''
+        };
+
+        setTrackedJobs([newJob, ...trackedJobs]);
+
+        try {
+            const jobRef = doc(db, 'users', userId, 'trackedJobs', jobId);
+            await setDoc(jobRef, newJob);
+            showToast("Successfully added job!");
+        } catch (error) {
+            console.error("Error adding manual job:", error);
+            showToast("Error adding job");
+        }
+    };
+
+    return { trackedJobs, handleApply, updateJobStatus, addManualJob };
 };
