@@ -9,9 +9,10 @@ type Props = {
     trackedJobs: TrackedJob[];
     updateJobStatus: (id: string, newStatus: TrackedJob['status']) => void;
     addManualJob: (title: string, company: string, status: TrackedJob['status'], url?: string) => void;
+    deleteJob: (id: string) => void;
 };
 
-const MyApplications: React.FC<Props> = ({ trackedJobs, updateJobStatus, addManualJob }) => {
+const MyApplications: React.FC<Props> = ({ trackedJobs, updateJobStatus, addManualJob, deleteJob }) => {
     // We need to disable StrictMode warning for react-beautiful-dnd, or just use it.
     // @hello-pangea/dnd works fine in React 18 strict mode.
     const [isBrowser, setIsBrowser] = useState(false);
@@ -92,10 +93,34 @@ const MyApplications: React.FC<Props> = ({ trackedJobs, updateJobStatus, addManu
                                                             borderRadius: '8px',
                                                             color: 'var(--text-main)',
                                                             boxShadow: snapshot.isDragging ? '0 10px 20px rgba(0,0,0,0.5)' : 'none',
+                                                            position: 'relative',
                                                             ...provided.draggableProps.style,
                                                         }}
                                                     >
-                                                        <h4 style={{ margin: 0, fontSize: '0.9rem', marginBottom: '0.3rem' }}>{job.title}</h4>
+                                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                                            <h4 style={{ margin: 0, fontSize: '0.9rem', marginBottom: '0.3rem', paddingRight: '1rem' }}>{job.title}</h4>
+                                                            <button
+                                                                onClick={() => deleteJob(job.id)}
+                                                                style={{
+                                                                    background: 'none',
+                                                                    border: 'none',
+                                                                    color: 'var(--text-muted)',
+                                                                    cursor: 'pointer',
+                                                                    fontSize: '0.9rem',
+                                                                    padding: 0,
+                                                                    opacity: 0.5,
+                                                                    transition: 'opacity 0.2s',
+                                                                    position: 'absolute',
+                                                                    top: '0.8rem',
+                                                                    right: '0.8rem'
+                                                                }}
+                                                                onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
+                                                                onMouseOut={(e) => e.currentTarget.style.opacity = '0.5'}
+                                                                title="Delete job"
+                                                            >
+                                                                ✕
+                                                            </button>
+                                                        </div>
                                                         <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{job.company}</div>
                                                         <div style={{ fontSize: '0.7rem', color: '#06b6d4', marginTop: '0.5rem' }}>{job.dateStr}</div>
                                                     </div>

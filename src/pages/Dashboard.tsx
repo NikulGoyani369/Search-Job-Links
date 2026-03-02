@@ -13,7 +13,7 @@ import { useExternalJobs } from '../hooks/useExternalJobs';
 
 const Dashboard: React.FC<{ setIsAuthenticated: (val: boolean) => void }> = ({ setIsAuthenticated }) => {
     const { username, formattedName, handleLogout } = useAuth(setIsAuthenticated);
-    const { trackedJobs, handleApply, updateJobStatus, addManualJob } = useTrackedJobs();
+    const { trackedJobs, handleApply, updateJobStatus, addManualJob, deleteJob } = useTrackedJobs();
     const { externalJobs, isScraping, handleScrape } = useExternalJobs();
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -40,7 +40,7 @@ const Dashboard: React.FC<{ setIsAuthenticated: (val: boolean) => void }> = ({ s
                     <div className="bento-dashboard">
                         <ExploreCareers searchTerm={searchTerm} setSearchTerm={setSearchTerm} isScraping={isScraping} handleScrape={handleScrape} />
                         <TopOpportunities opportunities={filteredOpportunities} trackedJobs={trackedJobs} handleApply={handleApply} />
-                        <MyApplications trackedJobs={trackedJobs} updateJobStatus={updateJobStatus} addManualJob={addManualJob} />
+                        <MyApplications trackedJobs={trackedJobs} updateJobStatus={updateJobStatus} addManualJob={addManualJob} deleteJob={deleteJob} />
                         <NetworkingTools connections={LINKEDIN_CONNECTIONS} />
                         <MiniCards />
                     </div>

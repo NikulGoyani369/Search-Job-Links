@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import type { TrackedJob } from '../types';
 import { showToast } from '../utils/toast';
 import { db, auth } from '../config/firebase';
-import { collection, doc, setDoc, updateDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { collection, doc, setDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 
 export const useTrackedJobs = () => {
@@ -137,5 +137,30 @@ export const useTrackedJobs = () => {
         }
     };
 
-    return { trackedJobs, handleApply, updateJobStatus, addManualJob };
+    const deleteJob = async (id: string) => {
+        if (!userId) {
+            showToast("Please log in to manage jobs.");
+            return;
+        }
+
+        const confirmDelete = window.confirm("Are you sure you want to delete this job?");
+        if (!confirmDelete) return;
+
+        // Optimistic UI update
+        const updated = trackedJobs.filter(j => j.id !== id);
+        setTrackedJobs(updated);
+
+        try {
+            const jobRef = doc(db, 'users', userId, 'trackedJobs', id);
+            await deleteDoc(jobRef);
+            showToast("Job deleted");
+        } catch (error) {
+            console.error("Error deleting job:", error);
+            showToast("Error deleting job");
+            // Revert on error
+            setTrackedJobs(trackedJobs);
+        }
+    };
+
+    return { trackedJobs, handleApply, updateJobStatus, addManualJob, deleteJob };
 };
