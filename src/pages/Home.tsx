@@ -79,7 +79,7 @@ const Home: React.FC<{ isAuthenticated: boolean }> = ({ isAuthenticated }) => {
         return link.name.toLowerCase().includes(term) || (link.tags || '').toLowerCase().includes(term);
     });
 
-    const visibleLinks = isAuthenticated ? filteredLinks : filteredLinks.slice(0, 6);
+    const visibleLinks = isAuthenticated ? filteredLinks : filteredLinks.slice(0, 8);
 
     return (
         <div className="app-container">
